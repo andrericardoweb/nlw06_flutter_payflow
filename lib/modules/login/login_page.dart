@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:nlw06_flutter_payflow/modules/login/login_controller.dart';
 import 'package:nlw06_flutter_payflow/shared/themes/app_colors.dart';
 import 'package:nlw06_flutter_payflow/shared/themes/app_images.dart';
 import 'package:nlw06_flutter_payflow/shared/themes/app_text_style.dart';
 import 'package:nlw06_flutter_payflow/shared/widgets/social_login/social_login_button.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -61,19 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(left: 40, right: 40, top: 40),
                     child: SocialLoginButton(
-                      onTap: () async {
-                        GoogleSignIn _googleSignIn = GoogleSignIn(
-                          scopes: [
-                            'email',
-                          ],
-                        );
-                        try {
-                          final response = await _googleSignIn.signIn();
-                          print(response);
-                        } catch (error) {
-                          print(error);
-                        }
-                      },
+                      onTap: controller.googleSignIn,
                     ),
                   ),
                 ],
