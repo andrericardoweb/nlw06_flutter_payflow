@@ -4,17 +4,19 @@ import 'package:nlw06_flutter_payflow/shared/themes/app_text_style.dart';
 class LabelButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
-  const LabelButton({Key? key, required this.label, required this.onPressed}) : super(key: key);
+  final TextStyle? style;
+  const LabelButton({Key? key, required this.label, required this.onPressed, this.style})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
       child: TextButton(
-        onPressed: onPressed, 
+        onPressed: onPressed,
         child: Text(
           label,
-          style: AppTextStyles.buttonHeading,
+          style: style ?? AppTextStyles.buttonHeading,
         ),
       ),
     );
