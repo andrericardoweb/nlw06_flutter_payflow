@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(
                   Icons.home,
-                  color: AppColors.primary,
+                  color: controller.currentPage == 0 ? AppColors.primary : AppColors.body,
                 )),
             GestureDetector(
               onTap: () {
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(
                   Icons.description_outlined,
-                  color: AppColors.body,
+                  color: controller.currentPage == 1 ? AppColors.primary : AppColors.body,
                 )),
           ],
         ),
