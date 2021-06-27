@@ -16,10 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
-  final pages = [
-    MeusBoletosPage(),
-    ExtractPage(),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,16 +45,23 @@ class _HomePageState extends State<HomePage> {
                 height: 48,
                 width: 48,
                 decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(image: NetworkImage(widget.user.photoURL!))
-                ),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                        image: NetworkImage(widget.user.photoURL!))),
               ),
             ),
           ),
         ),
       ),
-      body: pages[controller.currentPage],
+      body: [
+        MeusBoletosPage(
+          key: UniqueKey(),
+        ),
+        ExtractPage(
+          key: UniqueKey(),
+        ),
+      ][controller.currentPage],
       bottomNavigationBar: Container(
         height: 90,
         child: Row(
@@ -75,8 +79,9 @@ class _HomePageState extends State<HomePage> {
                       : AppColors.body,
                 )),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/insert_boleto");
+              onTap: () async {
+                await Navigator.pushNamed(context, "/barcode_scanner");
+                setState(() {});
               },
               child: Container(
                 width: 56,
