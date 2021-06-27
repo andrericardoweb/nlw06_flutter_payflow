@@ -3,12 +3,12 @@ import 'dart:convert';
 class BoletoModel {
   final String? name;
   final String? dueDate;
-  final double value;
+  final double? value;
   final String? barcode;
   BoletoModel({
     this.name,
     this.dueDate,
-    required this.value,
+    this.value,
     this.barcode,
   });
 
